@@ -24,7 +24,7 @@ import st23 from './image/st23.jpg'
 import st24 from './image/st24.jpg'
 import st25 from './image/st25.jpg'
 import st26 from './image/st26.jpg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -48,12 +48,25 @@ function App() {
     }
   );
 
+  const [hidden, setHidden] = useState(true)
+
+  useEffect(() => {
+    setState({ index: -1, imgList: shuffle(state.imgList) })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const click = () => {
     if (state.index + 1 === state.imgList.length) {
       setState({ index: 0, imgList: shuffle(state.imgList) })
     } else {
       let proximo = state.index + 1
-      setState({ index: proximo, imgList: shuffle(state.imgList) })
+      setState({ index: proximo, imgList: state.imgList })
+    }
+
+    if (state.imgList[(state.index) + 1] === st11) {
+      setHidden(s => !s)
+    } else {
+      setHidden(true)
     }
   }
 
@@ -61,6 +74,7 @@ function App() {
     <div className="App">
       <button className='botao' onClick={click}>Click here and try to find my mom</button>
       <img className='imagem' src={state.imgList[state.index]} alt="Images of leleo and your gang" />
+      {!hidden ? <p className='congratulations'>Congratulations! You find my parents!!!!</p> : null}
     </div>
   );
 }

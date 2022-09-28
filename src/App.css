@@ -16,5 +16,12 @@
 }
 
 .imagem {
-  height: 80vh;
+  height: 70vh;
+}
+
+.congratulations {
+  padding: 1em;
+  font-weight: bold;
+  font-size: 24px;
+  height: 100%;
 }
