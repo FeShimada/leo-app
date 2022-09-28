@@ -49,6 +49,7 @@ function App() {
   );
 
   const [hidden, setHidden] = useState(true)
+  const [points, setPoints] = useState(0)
 
   useEffect(() => {
     setState({ index: -1, imgList: shuffle(state.imgList) })
@@ -65,6 +66,7 @@ function App() {
 
     if (state.imgList[(state.index) + 1] === st11) {
       setHidden(s => !s)
+      setPoints(points + 1)
     } else {
       setHidden(true)
     }
@@ -72,7 +74,10 @@ function App() {
 
   return (
     <div className="App">
-      <button className='botao' onClick={click}>Click here and try to find my mom</button>
+      <div className='top'>
+        <button className='top-botao' onClick={click}>Click here and try to find my mom</button>
+        <p className='top-points'>points: {points}</p>
+      </div>
       <img className='imagem' src={state.imgList[state.index]} alt="Images of leleo and your gang" />
       {!hidden ? <p className='congratulations'>Congratulations! You find my parents!!!!</p> : null}
     </div>
