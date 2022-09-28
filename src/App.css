@@ -43,3 +43,16 @@
   font-size: 24px;
   height: 100%;
 }
+
+@media(max-width: 600px) {
+  .top-botao {
+    width: 60%;
+  }
+
+  .top-points {
+    font-size: 8px;
+    border: 1px solid black;
+    padding: 0.5em;
+    left: 85%;
+  }
+}
