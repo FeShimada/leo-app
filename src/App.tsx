@@ -28,6 +28,19 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const shuffle = (array: any) => {
+    let currentIndex = array.length, randomIndex
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
+
   const [state, setState] = useState(
     {
       index: -1,
@@ -37,17 +50,17 @@ function App() {
 
   const click = () => {
     if (state.index + 1 === state.imgList.length) {
-      setState({ index: 0, imgList: [st1, st2, st3, st4, st5, st6, st7, st8, st9, st10, st11, st12, st13, st14, st15, st16, st17, st18, st19, st20, st21, st22, st23, st24, st25, st26] })
+      setState({ index: 0, imgList: shuffle(state.imgList) })
     } else {
       let proximo = state.index + 1
-      setState({ index: proximo, imgList: [st1, st2, st3, st4, st5, st6, st7, st8, st9, st10, st11, st12, st13, st14, st15, st16, st17, st18, st19, st20, st21, st22, st23, st24, st25, st26] })
+      setState({ index: proximo, imgList: shuffle(state.imgList) })
     }
   }
 
   return (
     <div className="App">
       <button className='botao' onClick={click}>Click here and try to find my mom</button>
-      <img className='imagem' src={state.imgList[state.index]} alt="Imagens do leleo e sua turminha" />
+      <img className='imagem' src={state.imgList[state.index]} alt="Images of leleo and your gang" />
     </div>
   );
 }
